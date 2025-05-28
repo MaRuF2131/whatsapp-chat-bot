@@ -24,8 +24,7 @@ module.exports = async(to, body)=>{
         .create({
           body:junck,
           from: `whatsapp:${twilioNumber}`,
-          to: to,
-          statusCallback: 'https://440e-160-187-191-8.ngrok-free.app/message-status'
+          to: tog
         })
         .then(message => console.log(`✅ Message sent! SID: ${message.sid}`))
         .catch(error => console.error('❌ Error sending message:', error));
