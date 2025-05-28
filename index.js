@@ -5,19 +5,10 @@ const createuser=require('./sendmessage.js')
 const bodyParser = require('body-parser');
 const app = express();
 const port = 8080;
+
 app.use(express.json({ limit: '50mb' }));
-app.use((req, res, next) => {
-  console.log('---- INCOMING REQUEST ----');
-  console.log('Headers:', req.headers);
-  console.log('Body:', req.body); // may be empty if parsing fails
-  next();
-});
+
 app.use(express.urlencoded({ extended: false, limit: '50mb' }));
-app.use((err, req, res, next) => {
-  console.log('Error middleware caught:', err);
-  res.status(500).send('Server error');
-  next();
-});
 
 app.get("/",(req,res)=>{
   res.send("app is running");
