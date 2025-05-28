@@ -69,6 +69,3 @@ app.post('/message-status', (req, res) => {
 });
 
 
-app.listen(port, () => {
-  console.log(`WhatsApp webhook server running at http://localhost:${port}`);
-});
