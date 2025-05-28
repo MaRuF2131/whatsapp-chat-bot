@@ -19,6 +19,9 @@ app.use((err, req, res, next) => {
   next();
 });
 
+app.get("/",(req,res)=>{
+  res.send("app is running");
+})
 
 app.post('/whatsapp', async(req, res) => {
   const from = req.body?.From;
