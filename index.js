@@ -2,7 +2,6 @@ const express = require('express');
 const  OpenAI =require("openai");
 const replyfromgpt= require('./call_gpt.js');
 const createuser=require('./sendmessage.js')
-const bodyParser = require('body-parser');
 const app = express();
 const port = 8080;
 
@@ -61,5 +60,7 @@ app.post('/message-status', (req, res) => {
 
   res.sendStatus(200);
 });
+
+module.exports = app;
 
 
