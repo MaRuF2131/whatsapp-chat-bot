@@ -24,7 +24,7 @@ module.exports = async(to, body)=>{
         .create({
           body:junck,
           from: `whatsapp:${twilioNumber}`,
-          to: tog
+          to: to
         })
         .then(message => console.log(`✅ Message sent! SID: ${message.sid}`))
         .catch(error => console.error('❌ Error sending message:', error));
