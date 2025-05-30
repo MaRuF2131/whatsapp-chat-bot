@@ -1,6 +1,7 @@
 
-require('dotenv').config();
-module.exports=async(incomingMsg)=>{
+import dotenv from 'dotenv';
+dotenv.config();
+export default async (incomingMsg) => {
 
  const chatGPTRes = await fetch('https://api.openai.com/v1/chat/completions', {
   method: 'POST',
